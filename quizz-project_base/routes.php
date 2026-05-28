@@ -28,3 +28,8 @@ $router->get('/admin/dashboard', 'AdminController@dashboard');
 $router->get('/admin/create', 'AdminController@createForm');
 $router->post('/admin/create', 'AdminController@create');
 $router->get('/admin/delete/{id}', 'AdminController@delete');
+
+//User Routes
+
+$router->get('/register', 'UserController@create');
+$router->post('/register', 'UserController@store');

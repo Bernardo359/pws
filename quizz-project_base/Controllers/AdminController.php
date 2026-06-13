@@ -28,6 +28,12 @@ class AdminController
         echo "Login inválido";
     }
 
+    public function logout(){
+        session_destroy();
+        header('Location: ' . url('/admin'));
+        exit;
+    }
+
     public function dashboard()
     {
 
@@ -47,6 +53,11 @@ class AdminController
 
     public function create() {
 
+        if (!isset($_SESSION['admin'])) {
+            header('Location: ' . url('/admin'));
+            exit;
+        }
+
         $question = Question::create([
             'question_text' => $_POST['question']
         ]);
@@ -63,6 +74,11 @@ class AdminController
     }
 
     public function delete($id) {
+        
+        if (!isset($_SESSION['admin'])) {
+            header('Location: ' . url('/admin'));
+            exit;
+        }
 
         Question::destroy($id);
 

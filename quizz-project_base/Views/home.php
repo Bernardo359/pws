@@ -13,3 +13,5 @@
 <a href="<?= url('/admin') ?>">Login para administradores</a>
 <br><br>
 <a href="<?= url('/register') ?>">Registe-se</a>
+<br><br>
+<a href="<?= url('/login') ?>">Login para Utilizadores</a>

@@ -1,6 +1,6 @@
 <h1>Admin Dashboard</h1>
 
-<button style="margin-left:95%"><a href="<?= url('/admin')?>">Logout</a></button>
+<button style="margin-left:95%"><a href="<?= url('/admin/logout')?>">Logout</a></button>
 <br>
 
 <a href="<?= url('/admin/create') ?>">➕ Nova Pergunta</a>

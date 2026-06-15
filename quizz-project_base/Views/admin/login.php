@@ -6,3 +6,9 @@
     <input type="password" name="password" placeholder="Password"><br>
     <button type="submit">Entrar</button>
 </form>
+<?php if (!empty($_SESSION['login_error'])): ?>
+    <div class="error">
+        <?= $_SESSION['login_error'] ?>
+    </div>
+    <?php unset($_SESSION['login_error']); ?>
+<?php endif; ?>

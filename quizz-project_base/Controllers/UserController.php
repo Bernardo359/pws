@@ -22,13 +22,14 @@ class UserController{
         try{
             User::create(['username' => $user,
                         'password' => $pass,
-                        'is_admin' => $isAdmin
+                        'isAdmin' => $isAdmin
                         ]);
             $_SESSION['flash'] = ['type' => 'success', 'message' => 'Passou'];
             if($isAdmin == 0){
                 header('Location: ' . url('/quiz'));
             }else{
-                header('Location: ' . url('/admin'));
+                $_SESSION['admin'] = true;
+                header('Location: ' . url('/admin/dashboard'));
             }
 
         } catch(\Exception $e){
@@ -53,7 +54,7 @@ class UserController{
         }
         try{
             $cred = User::where('username', $user)->where('password', $pass)->first();
-            $isAdmin = $cred->is_admin;
+            $isAdmin = $cred->isAdmin;
             // var_dump($isAdmin);
             // die;
             if ($cred) {

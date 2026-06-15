@@ -7,6 +7,9 @@
 </head>
 <body>
     <h2>Login para Utilizadores</h2>
+    <button style="margin-left: 90%;">
+        <a href="<?= url('/'); ?>">Página Inicial</a>
+    </button>
     <form action="<?= url('/login')?>" method="POST">
         <fieldset style="margin-right: 60%;">
             <legend>Dados de Acesso</legend>

@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../Models/Question.php';
 require_once __DIR__ . '/../Models/Option.php';
+require_once __DIR__ . '/../Models/User.php';
 
 class AdminController
 {
@@ -15,20 +16,39 @@ class AdminController
 
     public function login()
     {
+        $user = trim($_POST['username'] ?? '');
+        $pass = trim($_POST['password'] ?? '');
+        // var_dump($user, $pass);
+        // die;
 
-        $user = $_POST['username'] ?? '';
-        $pass = $_POST['password'] ?? '';
-
-        if ($user === $this->username && $pass === $this->password) {
-            $_SESSION['admin'] = true;
-            header('Location: ' . url('/admin/dashboard'));
+        if ($user === '' || $pass === '') {
+            $_SESSION['flash'] = ['type' => 'error', 'message' => 'A sessão falhou'];
+            header('Location: ' . url('/login'));
             exit;
         }
-
-        echo "Login inválido";
+        try {
+            //$cred é credenciais
+            $cred = User::where('username', $user)->where('password', $pass)->where('isAdmin', 1)->first();
+            // $isAdmin = $cred->isAdmin;
+            // var_dump($cred);
+            // die;
+            if ($cred == true) {
+                $_SESSION['flash'] = ['type' => 'success', 'message' => 'Passou'];
+                $_SESSION['admin'] = true;
+                header('Location: ' . url('admin/dashboard'));
+                exit(); 
+            } else {
+                $_SESSION['login_error'] = 'Username ou password inválida para o ADMINISTRADOR!';
+                header('Location: ' . url('/admin'));
+                exit();
+            }
+        } catch (\Exception $e) {
+            $_SESSION['flash'] = ['type' => 'error', 'message' => 'Erro: ' . $e->getMessage()];
+        }
     }
 
-    public function logout(){
+    public function logout()
+    {
         session_destroy();
         header('Location: ' . url('/admin'));
         exit;
@@ -47,11 +67,19 @@ class AdminController
         require 'Views/admin/dashboard.php';
     }
 
-    public function createForm() {
+    public function createForm()
+    {
+        if (!isset($_SESSION['admin'])) {
+            header('Location: ' . url('/admin'));
+            exit;
+        }
+
         require 'Views/admin/create.php';
     }
 
-    public function create() {
+    public function create()
+    {
+        // die('ENTREI NO CREATE');
 
         if (!isset($_SESSION['admin'])) {
             header('Location: ' . url('/admin'));
@@ -73,8 +101,9 @@ class AdminController
         header('Location: ' . url('/admin/dashboard'));
     }
 
-    public function delete($id) {
-        
+    public function delete($id)
+    {
+
         if (!isset($_SESSION['admin'])) {
             header('Location: ' . url('/admin'));
             exit;

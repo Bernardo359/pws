@@ -7,6 +7,9 @@
 </head>
 <body>
     <h1>Registar Utilizador</h1>
+    <button style="margin-left: 90%;">
+        <a href="<?= url('/'); ?>">Página Inicial</a>
+    </button>
     <div class="form-register">
         <form action="<?= url('/register')?>" method="POST">
             <fieldset style="margin-right: 60%;">

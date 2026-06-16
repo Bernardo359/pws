@@ -1,0 +1,8 @@
+{
+    "require": {
+        "nesbot/carbon": "^2.46",
+        "illuminate/database": "^10.0",
+        "symfony/var-dumper": "^6.4"
+    }
+}
+

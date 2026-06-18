@@ -54,6 +54,15 @@ class FaturaController
         }
     }
 
+    public function estado(){
+        $emitir = $_POST['emitir'];
+        $cancelar = $_POST['cancelar'];
+
+        if($emitir){
+            
+        }
+    }
+
     public function edit($id)
     {
         $fatura = Fatura::find($id);

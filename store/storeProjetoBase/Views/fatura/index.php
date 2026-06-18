@@ -6,6 +6,7 @@
                 <tr>
                     <th><h3>Número</h3></th>
                     <th><h3>Data</h3></th>
+                    <th><h3>Estado</h3></th>
                     <th><h3>Nome cliente</h3></th>
                     <th><h3>Morada cliente</h3></th>
                     <th><h3>NIF cliente</h3></th>
@@ -18,6 +19,7 @@
                 <tr>
                     <td><?= htmlspecialchars($fatura->numero) ?></td>
                     <td><?= $fatura->data ? $fatura->data->format('Y/m/d') : '' ?></td>
+                    <td><?= htmlspecialchars($fatura->estado) ?></td>
                     <td><?= htmlspecialchars($fatura->nomecliente) ?></td>
                     <td><?= htmlspecialchars($fatura->moradacliente) ?></td>
                     <td><?= htmlspecialchars($fatura->nifcliente) ?></td>

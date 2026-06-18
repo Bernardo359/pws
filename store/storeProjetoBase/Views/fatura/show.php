@@ -1,27 +1,16 @@
 <div class="row">
-    <div class="col-4">
+    <div class="col-6">
         <?php require __DIR__ . '/../loja/detail.php'; ?>
     </div>
-    <div class="col-4">
+    <div class="col-6">
         <div><h1>Fatura</h1></div>
         <div><h4>Número: <?= htmlspecialchars($fatura->numero) ?></h4></div>
         <div>Data: <?= $fatura->data ? $fatura->data->format('Y/m/d') : '' ?></div>
-        <div>Estado: <?= htmlspecialchars($fatura->estado) ?></div>
         <div>Nome cliente: <?= htmlspecialchars($fatura->nomecliente) ?></div>
         <div>Morada cliente: <?= htmlspecialchars($fatura->moradacliente) ?></div>
         <div>NIF cliente: <?= htmlspecialchars($fatura->nifcliente) ?></div>
         <div>Valor total: <?= htmlspecialchars($fatura->valortotal) ?></div>
     </div>
-    <?php if($fatura->estado == 'Em Elaboração'):?>
-    <div class="col-4">
-        <form method="POST" action="<?= url('/fatura/' . $fatura->id . '/estado') ?>">
-            <button name="btn-emitir" type="submit" id="btn-emitir" style="margin-right: 3%; font-size: 20px" value="emitir">Emitir</button>
-        </form>
-        <form method="POST" action="<?= url('/fatura/' . $fatura->id . '/estado') ?>">
-            <button name="btn-cancelar" id="btn-emitir" style="font-size: 20px" value="cancelar">Cancelar</button>
-        </form>
-    </div>
-    <?php endif;?>
 </div>
 <br><br>
 <?php

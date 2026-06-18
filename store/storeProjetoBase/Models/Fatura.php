@@ -7,13 +7,12 @@ require_once __DIR__ . '/Linhafatura.php';
 class Fatura extends Model
 {
     protected $table = 'faturas';
-    protected $fillable = ['numero', 'data', 'nomecliente', 'moradacliente', 'nifcliente', 'valortotal', 'estado'];
+    protected $fillable = ['numero', 'data', 'nomecliente', 'moradacliente', 'nifcliente', 'valortotal'];
     public $timestamps = false;
     protected $casts = ['data' => 'date'];
 
     protected $attributes = [
-        'valortotal' => 0,
-        'estado' => 'Em Elaboração'
+        'valortotal' => 0
     ];
 
     public function linhafaturas()

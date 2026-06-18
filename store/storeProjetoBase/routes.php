@@ -22,7 +22,6 @@ $router->get('/',                                  'FaturaController@index');
 $router->get('/fatura',                            'FaturaController@index');
 $router->get('/fatura/create',                     'FaturaController@create');
 $router->post('/fatura',                           'FaturaController@store');
-$router->post('/fatura',                           'FaturaController@estado');
 $router->get('/fatura/{id}',                       'FaturaController@show');
 $router->get('/fatura/{id}/edit',                  'FaturaController@edit');
 $router->post('/fatura/{id}',                      'FaturaController@update');

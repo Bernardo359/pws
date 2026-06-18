@@ -64,6 +64,7 @@ class FaturaController
     // }
 
     //teste
+    //teste
     public function edit($id)
     {
         $fatura = Fatura::find($id);

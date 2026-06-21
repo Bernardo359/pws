@@ -19,6 +19,9 @@
                     <a class="nav-link active" href="<?= url('/fatura') ?>">Faturas</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link active" href="<?= url('/recibo') ?>">Recibos</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link active" href="<?= url('/produto') ?>">Produtos</a>
                 </li>
             </ul>

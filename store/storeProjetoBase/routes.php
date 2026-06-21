@@ -22,12 +22,19 @@ $router->get('/',                                  'FaturaController@index');
 $router->get('/fatura',                            'FaturaController@index');
 $router->get('/fatura/create',                     'FaturaController@create');
 $router->post('/fatura',                           'FaturaController@store');
-// $router->post('/fatura',                           'FaturaController@estado');
+$router->post('/fatura/{id}/emitir',               'FaturaController@emitir');
+$router->post('/fatura/{id}/cancelar',               'FaturaController@cancelar');
 $router->get('/fatura/{id}',                       'FaturaController@show');
 $router->get('/fatura/{id}/edit',                  'FaturaController@edit');
 $router->post('/fatura/{id}',                      'FaturaController@update');
 $router->get('/fatura/{id}/delete',                'FaturaController@delete');
+$router->post('/criarRecibo',                           'FaturaController@criarRecibo');
 
 $router->get('/fatura/{id}/linhafatura/create',    'LinhaFaturaController@create');
 $router->post('/linhafatura',                      'LinhaFaturaController@store');
 $router->get('/linhafatura/{id}/delete',           'LinhaFaturaController@delete');
+
+$router->get('/recibo',                            'ReciboController@index');
+$router->get('/recibo/create',                     'ReciboController@create');
+$router->post('/recibo',                           'ReciboController@store');
+$router->get('/recibo/{id}',                        'ReciboController@show');

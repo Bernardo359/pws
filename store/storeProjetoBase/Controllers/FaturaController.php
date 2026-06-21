@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../Models/Fatura.php';
+require_once __DIR__ . '/../Models/Recibo.php';
 require_once __DIR__ . '/../Models/Loja.php';
 
 class FaturaController
@@ -54,17 +55,53 @@ class FaturaController
         }
     }
 
-    // public function estado(){
-    //     $emitir = $_POST['emitir'];
-    //     $cancelar = $_POST['cancelar'];
+    public function emitir($id)
+    {
+        $fatura = Fatura::find($id);
 
-    //     if($emitir){
-            
-    //     }
-    // }
+        if($fatura->estado != 'Em Elaboração'){
+            die('Esta transição não é permitida!');
+        }
 
-    //teste
-    //teste
+        $fatura->estado = "Emitida";
+        $fatura->save();
+
+        header('Location: ' . url('/fatura/' . $id));
+        exit;
+    }
+
+    public function cancelar($id){
+        $fatura = Fatura::find($id);
+
+        if($fatura->estado != 'Em Elaboração'){
+            die('Esta transição não é permitida!');
+        }
+
+        $fatura->estado = "Cancelada";
+        $fatura->save();
+
+        header('Location: ' . url('/fatura/' . $id));
+        exit;
+    }
+
+    public function criarRecibo(){
+        $fatura_id = $_POST['fatura_id'] ?? null;
+        $fatura = Fatura::find($fatura_id);
+
+        if($fatura->estado != 'Emitida'){
+            die('Esta transição não é permitida!');
+        }
+
+        // $recibo = Recibo::where('fatura_id', $fatura_id)->lastest()->first();
+
+        // if (is_null($recibo)) {
+        //     die('Recibo não encontrado!');
+        // }
+
+        header('Location: ' . url('/recibo/create?fatura_id=' . $fatura_id));
+        exit;
+    }
+
     public function edit($id)
     {
         $fatura = Fatura::find($id);
